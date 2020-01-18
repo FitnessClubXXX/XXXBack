@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "postinstall": "npm i -g nodemon"
+    "postinstall": "npm i -g nodemon && npm i -g babel-node"
   },
   "author": "",
   "license": "ISC",
