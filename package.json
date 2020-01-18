@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "postinstall": "npm i -g nodemon && npm i -g babel-node"
+    "postinstall": "npm i -g nodemon"
   },
   "author": "",
   "license": "ISC",
@@ -18,8 +18,8 @@
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
     "@babel/node": "^7.7.4",
+    "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.7.6",
-		"@babel/polyfill": "^7.0.0",
     "nodemon": "^2.0.2"
   }
 }
