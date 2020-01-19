@@ -4,6 +4,7 @@ const app = express();
 const port = 3003;
 
 app.get('/', (req, res) => {
+		console.log('FETCHED REQUEST ON /');
     return res.send('REST API is working fine!');
 });
 
