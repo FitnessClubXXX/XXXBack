@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     return res.send('REST API is working fine!');
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3003, () => {
     console.log(`App is listening on port ${port}`);
 		console.log('APP IS CURELY STARTED');
 });
