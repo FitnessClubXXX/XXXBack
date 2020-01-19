@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "postinstall": "npm i -g nodemon && npm i -g --save-dev babel-node  && npm i -g --save-dev @babel/node && npm i -g --save-dev @babel/preset-env --save-dev && npm i -g --save-dev @babel/core && npm i -g --save-dev @babel/cli && npm i -g --save-dev @babel/polyfill"
+    "postinstall": "npm i -g nodemon && npm i -g && npm i -g --save-dev @babel/node && npm i -g --save-dev @babel/preset-env --save-dev && npm i -g --save-dev @babel/core && npm i -g --save-dev @babel/cli && npm i -g --save-dev @babel/polyfill"
   },
   "author": "",
   "license": "ISC",
