@@ -25,7 +25,6 @@ const User = mongoose.model('User', userSchema, 'users');
 const classSchema = new mongoose.Schema({ id: Number, classTitle: String, startDate: String, endDate: String, cost: String, peopleLimit: String }, {collection : 'users'});
 const Class = mongoose.model('Class', classSchema, 'classes');
 
-// User collection endpoints
 app.get('/user/:id', (req, res) => {
   User.find((err, data) => {
     const email = req.params.id;
