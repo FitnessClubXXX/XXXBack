@@ -25,6 +25,10 @@ const User = mongoose.model('User', userSchema, 'users');
 const classSchema = new mongoose.Schema({ id: Number, classTitle: String, startDate: String, endDate: String, cost: String, peopleLimit: String }, {collection : 'users'});
 const Class = mongoose.model('Class', classSchema, 'classes');
 
+app.get('/', (req, res) => {
+  res.send('App is working!');
+});
+
 app.get('/user/:id', (req, res) => {
   User.find((err, data) => {
     const email = req.params.id;
@@ -64,7 +68,6 @@ app.get('/classes', (req, res) => {
   })
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App is listening on port ${port}`);
-
 });
