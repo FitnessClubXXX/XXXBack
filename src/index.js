@@ -22,14 +22,23 @@ db.once('open', function () {
 const userSchema = new mongoose.Schema({ mail: String, password: String, name: String, surname: String }, {collection : 'users'});
 const User = mongoose.model('User', userSchema, 'users');
 
-const classSchema = new mongoose.Schema({ id: Number, classTitle: String, startDate: String, endDate: String, cost: String, peopleLimit: String }, {collection : 'users'});
+const classSchema = new mongoose.Schema({ id: Number, classTitle: String, startDate: String, endDate: String, cost: String, peopleLimit: String }, {collection : 'classes'});
 const Class = mongoose.model('Class', classSchema, 'classes');
 
-app.get('/', (req, res) => {
+const carnetSchema = new mongoose.Schema({ id: Number, name: String, price: String, description: String, photos: Array, userId: String }, {collection : 'carnets'});
+const Carnet = mongoose.model('Carnet', carnetSchema, 'carnets');
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://fitness-front-prod.herokuapp.com/");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.get('/', (req, res, next) => {
   res.send('App is working!');
 });
 
-app.get('/user/:id', (req, res) => {
+app.get('/user/:id', (req, res, next) => {
   User.find((err, data) => {
     const email = req.params.id;
     if (email) {
@@ -46,7 +55,7 @@ app.get('/user/:id', (req, res) => {
   })
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', (req, res, next) => {
   if (req.body.mail && req.body.password) {
     User.findOne({ mail: req.body.mail }, (err, doc) => {
       if (doc) {
@@ -64,12 +73,43 @@ app.post('/login', (req, res) => {
   }
 });
 
-app.get('/classes', (req, res) => {
+app.get('/classes', (req, res, next) => {
   Class.find((err, doc) => {
     if (!err) {
-      res.send(doc);
+      res.status(200).send(doc);
     }
   })
+});
+
+app.get('/carnets', (req, res, next) => {
+  Carnet.find((err, doc) => {
+    if (!err) {
+      res.status(200).send(doc);
+    }
+  })
+});
+
+app.get('/carnets/:id', (req, res, next) => {  
+  const email = req.params.id;
+  
+  Carnet.find({ userId: email }, (err, doc) => {
+    if (doc) {
+      if (doc.length > 0) {
+        res.status(200).send(doc);
+      } else {
+        res.sendStatus(404);
+      }    
+    } else {
+      res.sendStatus(404);
+    }
+  });
+});
+
+app.post('/carnets', (req, res, next) => {
+  if (req.body.mail && req.body.carnetId) {
+    res.sendStatus(500);
+    // TODO!!!
+  }
 });
 
 app.listen(process.env.PORT || port, () => {

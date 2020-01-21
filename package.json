@@ -4,7 +4,7 @@
   "description": "REST API",
   "main": "src/index.js",
   "scripts": {
-    "start": "babel-node src/index.js test/api-tests.js",
+    "start": "babel-node src/index.js",
     "postinstall": "npm i -g nodemon && npm i -g @babel/preset-env && npm i -g @babel/node && npm i -g @babel/core && npm i -g @babel/cli && npm i -g @babel/polyfill",
     "test": "./node_modules/.bin/mocha"
   },
