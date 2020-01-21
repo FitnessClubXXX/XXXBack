@@ -35,7 +35,7 @@ app.get('/user/:id', (req, res) => {
     if (email) {
       User.findOne({ mail: email }, (err, doc) => {
         if (doc && doc.mail === email) {
-          res.send(doc);
+          res.status(200).send(doc);
         } else {
           res.sendStatus(404);
         }
@@ -49,10 +49,14 @@ app.get('/user/:id', (req, res) => {
 app.post('/login', (req, res) => {
   if (req.body.mail && req.body.password) {
     User.findOne({ mail: req.body.mail }, (err, doc) => {
-      if (doc.password === req.body.password) {        
-        res.send(doc);
+      if (doc) {
+        if (doc.password === req.body.password) {        
+          res.status(200).send(doc);
+        } else {
+          res.sendStatus(401);
+        }
       } else {
-        res.sendStatus(401);
+        res.sendStatus(404);
       }
     })
   } else {
