@@ -107,8 +107,18 @@ app.get('/carnets/:id', (req, res, next) => {
 
 app.post('/carnets', (req, res, next) => {
   if (req.body.mail && req.body.carnetId) {
-    res.sendStatus(500);
-    // TODO!!!
+    Carnet.findOneAndUpdate(
+      { id: req.body.carnetId },
+      { userId: req.body.mail },
+      { new: false },
+      (err, doc, response) => {
+        if (!err) {
+          res.sendStatus(200);
+        } else {
+          res.sendStatus(500);
+        }
+      }
+    );
   }
 });
 
